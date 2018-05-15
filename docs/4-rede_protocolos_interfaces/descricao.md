@@ -1,5 +1,5 @@
 # Nesta seção devem ser descritas:
-## 1. Interfaces de rede utilizadas 
+## Interfaces de rede utilizadas 
 Para o escopo inicial do Projeto, o dispositivo estará sempre ligado ao computador via cabo USB.  
 Porém, este mesmo dispositivo pode utilizar de interfaces WIFI e Bluetooth.
 

@@ -4,7 +4,7 @@
 
 **Instruções do professor**: Insira abaixo o diagrama com os casos de uso do seu sistema. A imagem abaixo é somente um exemplo.
 
-![Exemplo de diagrama dos casos de uso](exemplo-casos-uso.png)
+![Diagrama Caso de Uso Lembrou](https://github.com/sampaiolucas/oic_iot_mackenzie-projeto-XXX/blob/master/docs/2-casos-de-uso/imagens/Caso%20de%20Uso.PNG)
 
 ## 2. Especificação dos casos de uso
 

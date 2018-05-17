@@ -1,7 +1,4 @@
 # Descriçao do Hardware
-
-Deve conter:
-
 ## Lista de Peças (descrição e imagens, quando disponíveis)
 - 1 Arduino UNO
 - 1 Cabo USB para Conexão Serial

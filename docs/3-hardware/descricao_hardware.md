@@ -14,7 +14,7 @@ Deve conter:
 
 ## Desenho Tinkercad
 
-(https://github.com/sampaiolucas/Oic_iot_mackenzie-projeto-Lembrou/blob/master/docs/3-hardware/Imagens/Tinkercad.png)
+![Imagem Tinkercad Projeto Lembrou](https://github.com/sampaiolucas/Oic_iot_mackenzie-projeto-Lembrou/blob/master/docs/3-hardware/Imagens/Tinkercad.png)
 
-3) Esquema eletrônico
+## Esquema eletrônico
 

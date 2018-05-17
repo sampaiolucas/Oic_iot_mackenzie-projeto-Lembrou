@@ -8,6 +8,7 @@
 - 1 Buzzer (Observação: Na imagem abaixo está sendo utilizado um Piezo)
 - 3 LEDs (1 Amarelo, 1 Azul, 1 Vermelho)
 - 1 LED RGB
+- 1 Smartphone com a Aplicação Blynk para realizar a conexão do Dispositivo com o Arduino
 
 ## Desenho Tinkercad
 

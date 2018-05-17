@@ -1,5 +1,5 @@
 # Descriçao do Hardware
-## Lista de Peças (descrição e imagens, quando disponíveis)
+## Lista de Peças
 - 1 Arduino UNO
 - 1 Cabo USB para Conexão Serial
 - 10 Jumpers Macho

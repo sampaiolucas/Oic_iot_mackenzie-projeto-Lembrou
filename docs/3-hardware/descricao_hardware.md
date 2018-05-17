@@ -15,3 +15,5 @@
 
 ## Esquema eletrônico
 
+![Imagem Fritzing Projeto Lembrou](https://github.com/sampaiolucas/Oic_iot_mackenzie-projeto-Lembrou/blob/master/docs/3-hardware/Imagens/Fritzing.png)
+

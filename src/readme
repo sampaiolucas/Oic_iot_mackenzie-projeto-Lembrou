@@ -5,4 +5,14 @@ No Computador - Arduino IDE e as seguintes bibliotecas:
   - SimpleTimer (arquivo disponível neste diretório)
   - Bibliotecas BLYNK
   
- O Projeto BLYNK pode ser clonado através do QR Code que também está neste diretório.
+ 
+ Aplicativo Blynk:
+ No Blynk, são utilizados os seguintes "Widgets"
+  - Timer Display (Input: V0): Valor de 0 a 1023
+  - Slider (Input: V3): Valor de 0 a 24
+  - Button "Ligar" (Input: V1)
+  - Button "Tomou Remédio?" (Input: V2)
+  - Button "Som" (Input: V4)
+  
+  O esquema do Dispositivo Arduino encontra-se dentro do diretório de hardware.
+  

@@ -82,6 +82,7 @@ BLYNK_WRITE(2) {
       delay(150);
     }
   }
+  delay(2000);
   digitalWrite(blue, LOW);
 } // reset to original start time
 

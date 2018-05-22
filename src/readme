@@ -1,0 +1,8 @@
+O projeto utiliza das seguintes ferramentas que você precisa ter instalado:
+
+No Smartphone - Aplicativo BLYNK
+No Computador - Arduino IDE e as seguintes bibliotecas:
+  - SimpleTimer (arquivo disponível neste diretório)
+  - Bibliotecas BLYNK
+  
+ O Projeto BLYNK pode ser clonado através do QR Code que também está neste diretório.

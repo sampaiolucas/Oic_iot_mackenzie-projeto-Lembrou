@@ -1,0 +1,129 @@
+#define BLYNK_PRINT SwSerial
+#include <SoftwareSerial.h>
+SoftwareSerial SwSerial(10, 11); // RX, TX
+#include <BlynkSimpleStream.h>
+#include <SimpleTimer.h>
+
+char auth[] = "677d6088a5b44d5ba969600a6cbd9548";
+
+int yellow = 13;
+int blue = 12;
+int red = 9;
+int buz = 8;
+int rgbG = 2;
+int buzSound;
+int CountdownRemainReset;
+int CountdownRemain;
+int CountdownTimer;
+
+SimpleTimer timer;
+
+void setup() {
+  pinMode(yellow, OUTPUT);
+  pinMode(blue, OUTPUT);
+  pinMode(red, OUTPUT);
+  pinMode(buz, OUTPUT);
+  SwSerial.begin(9600);
+  Serial.begin(9600);
+  Blynk.begin(Serial, auth);
+  CountdownTimer = timer.setInterval(1000, CountdownTimerFunction);
+  timer.disable(CountdownTimer); // disable it on boot
+}
+
+void CountdownTimerFunction() {
+  CountdownRemain--;
+  CountdownShowFormatted(CountdownRemain);
+  if (!CountdownRemain) { // check if CountdownRemain == 0/FALSE/LOW
+    timer.disable(CountdownTimer); // if 0 stop timer
+    Blynk.virtualWrite(1, LOW); // reset START/STOP button status
+    Blynk.virtualWrite(0, "REMÉDIO!");
+    digitalWrite(red, HIGH);
+    if (buzSound == 1) {
+      for (int i = 0; i < 10; i++) {
+        digitalWrite(buz, HIGH);
+        delay(500);
+        digitalWrite(buz, LOW);
+        delay(500);
+      }
+    }
+  } else {digitalWrite(red, LOW);}
+}
+
+// Button Widget (Switch Type): Start/Pause Timer
+BLYNK_WRITE(1) {
+  if (param.asInt()) {
+    if (CountdownRemain) { // check if there is a time set or not
+      timer.enable(CountdownTimer);
+      digitalWrite(yellow, HIGH);
+    } else {
+      Blynk.virtualWrite(1, LOW); // if CountdownRemain is set to 0, then dont start hte timer.
+      Blynk.virtualWrite(0, "NÃO FOI CONFIGURADO O TEMPO"); // if CountdownRemain is set to 0, then tell the user
+    }
+  } else {
+    timer.disable(CountdownTimer);
+    digitalWrite(yellow, LOW);
+  }
+}
+
+BLYNK_WRITE(4) {
+  buzSound = param.asInt();
+  digitalWrite(rgbG, buzSound);
+}
+
+// Reset Timer
+BLYNK_WRITE(2) {
+  CountdownRemain = CountdownRemainReset;
+  digitalWrite(blue, HIGH);
+  if (buzSound == 1) {
+    for (int i = 0; i < 3; i++) {
+      digitalWrite(buz, HIGH);
+      delay(150);
+      digitalWrite(buz, LOW);
+      delay(150);
+    }
+  }
+  digitalWrite(blue, LOW);
+} // reset to original start time
+
+// Slider Widget (60-180): Set Timer (mins)
+BLYNK_WRITE(3) {
+  if (timer.isEnabled(CountdownTimer)) { // only update if timer not running
+    Blynk.virtualWrite(3, param.asInt() ); // if running, refuse to let use change slider
+  } else {
+    CountdownRemainReset = param.asInt() * 3600 + 1; // + 1 set the timer to 1:00:00 instead of 00:59:59
+    CountdownRemain = param.asInt() * 3600;
+    CountdownShowFormatted(CountdownRemain);
+  }
+}
+
+void CountdownShowFormatted(int seconds) {
+  long days = 0;
+  long hours = 0;
+  long mins = 0;
+  long secs = 0;
+  String secs_o = ":";
+  String mins_o = ":";
+  String hours_o = ":";
+  secs = seconds; // set the seconds remaining
+  mins = secs / 60; //convert seconds to minutes
+  hours = mins / 60; //convert minutes to hours
+  days = hours / 24; //convert hours to days
+  secs = secs - (mins * 60); //subtract the coverted seconds to minutes in order to display 59 secs max
+  mins = mins - (hours * 60); //subtract the coverted minutes to hours in order to display 59 minutes max
+  hours = hours - (days * 24); //subtract the coverted hours to days in order to display 23 hours max
+  if (secs < 10) {
+    secs_o = ":0";
+  }
+  if (mins < 10) {
+    mins_o = ":0";
+  }
+  if (hours < 10) {
+    hours_o = ":0";
+  }
+  Blynk.virtualWrite(0, days + hours_o + hours + mins_o + mins + secs_o + secs);
+
+}
+void loop() {
+  Blynk.run();
+  timer.run();
+}
